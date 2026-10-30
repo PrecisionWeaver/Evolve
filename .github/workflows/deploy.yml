@@ -30,11 +30,11 @@ jobs:
 
       - run: npm run build
 
-      # Same file set as `npm run deploy`
+      # Same file set as `npm run deploy`, plus package.json for the in-game version check
       - name: Assemble site
         run: |
           mkdir dist
-          cp -r *.html *.ico LICENSE evolve lib font strings wiki dist
+          cp -r *.html *.ico LICENSE package.json evolve lib font strings wiki dist
           find dist -name '*.map' -delete
 
       - uses: actions/upload-pages-artifact@v3
