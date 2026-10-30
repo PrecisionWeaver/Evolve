@@ -1,7 +1,5 @@
 # Evolve
 
-A fork of [pmotschmann/Evolve](https://github.com/pmotschmann/Evolve) with console helpers for speeding up play.
-
 ## Play
 
 https://precisionweaver.github.io/Evolve/
