@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pmotschmann/Evolve.git"
+    "url": "git+https://github.com/PrecisionWeaver/Evolve.git"
   },
   "keywords": [
     "Evolve"
@@ -30,9 +30,9 @@
   "author": "Peter Motschmann",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/pmotschmann/Evolve/issues"
+    "url": "https://github.com/PrecisionWeaver/Evolve/issues"
   },
-  "homepage": "https://github.com/pmotschmann/Evolve#readme",
+  "homepage": "https://github.com/PrecisionWeaver/Evolve#readme",
   "devDependencies": {
     "csso-cli": "^4.0.2",
     "ini": "^1.3.8",

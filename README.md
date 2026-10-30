@@ -1,8 +1,27 @@
 # Evolve
 
+A personal fork of [pmotschmann/Evolve](https://github.com/pmotschmann/Evolve) with console helpers for speeding up play.
+
 ## Play
 
-https://pmotschmann.github.io/Evolve/
+https://precisionweaver.github.io/Evolve/
+
+Every push to `master` is built and deployed automatically by GitHub Actions (`.github/workflows/deploy.yml`).
+
+The original game is at https://pmotschmann.github.io/Evolve/. To move a save over, use Settings → Export on the original, then Settings → Import here.
+
+## Dev Console
+
+Open the browser console on the game page and run `dev.help()`.
+
+```unknown
+dev.speed(n)       # run the game n times faster (1 = normal, resets on reload)
+dev.skip(days)     # instantly simulate that many game days
+dev.atime(days)    # add built-in accelerated time (2x), capped at 11520
+dev.add(res, n)    # add n of a resource, capped at storage
+dev.fill(res?)     # fill a resource (or all unlocked) to storage cap
+dev.list()         # show unlocked resources
+```
 
 ## About
 

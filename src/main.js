@@ -21,7 +21,7 @@ import { vacuumCollapse } from './resets.js';
 import { index, mainVue, initTabs, loadTab } from './index.js';
 import { setWeather, seasonDesc, astrologySign, astroVal } from './seasons.js';
 import { getTopChange } from './wiki/change.js';
-import { enableDebug, updateDebugData } from './debug.js';
+import { enableDebug, enableDevTools, updateDebugData } from './debug.js';
 
 {
     $(document).ready(function() {
@@ -54,6 +54,7 @@ window.addEventListener('storage', (e) => {
 if (global.settings.expose){
     enableDebug();
 }
+enableDevTools(execGameLoops);
 
 var quickMap = {
     showCiv: 1,
@@ -842,7 +843,7 @@ export function execGameLoops(periods = 1){
     // Currently there is no smart catch-up mechanism
     // Limit to 1 minute (12 game days) of simulation per call
     const maxCatchUp = webWorker.longRatio * 12;
-    periods = Math.min(periods, maxCatchUp); 
+    periods = Math.min(periods, maxCatchUp) * webWorker.speed;
 
     while (webWorker.s && periods--){
         ++loopTick;
@@ -12976,7 +12977,7 @@ function spyCaught(i){
 
 intervals['version_check'] = setInterval(function(){
     $.ajax({
-        url: 'https://pmotschmann.github.io/Evolve/package.json',
+        url: 'https://precisionweaver.github.io/Evolve/package.json',
         type: 'GET',
         dataType: 'json',
         success: function(res){
