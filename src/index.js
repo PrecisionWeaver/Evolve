@@ -19,7 +19,8 @@ export function mainVue(){
     vBind({
         el: '#mainColumn div:first-child',
         data: {
-            s: global.settings
+            s: global.settings,
+            devRes: Object.keys(global.resource).filter((r) => global.resource[r].display)
         },
         methods: {
             swapTab(tab){
@@ -175,6 +176,27 @@ export function mainVue(){
             toggleTabLoad(){
                 initTabs();
             },
+            devSpeed(n){
+                window.dev.speed(n);
+            },
+            devSkip(){
+                window.dev.skip(Number($('#devSkipDays').val()) || 0);
+            },
+            devATime(){
+                window.dev.atime(Number($('#devATimeDays').val()) || 0);
+            },
+            devFill(){
+                window.dev.fill();
+            },
+            devListRes(){
+                this.devRes = Object.keys(global.resource).filter((r) => global.resource[r].display);
+            },
+            devAdd(){
+                let res = $('#devAddRes').val();
+                if (res){
+                    window.dev.add(res, Number($('#devAddAmount').val()) || 0);
+                }
+            },
             unpause(){
                 $(`#pausegame`).removeClass('play');
                 $(`#pausegame`).removeClass('pause');
@@ -216,7 +238,7 @@ export function mainVue(){
         }
     });
 
-    ['1','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17'].forEach(function(k){
+    ['1','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18'].forEach(function(k){
         popover(`settings${k}`, function(){
                 return loc(`settings${k}`);
             },
@@ -1430,6 +1452,28 @@ export function index(){
             <div class="keyMap"><span>${loc('tech_arpa')}</span> <b-input v-model="s.keyMap.showGenetics" id="showGeneticsKey"></b-input></div>
             <div class="keyMap"><span>${loc('tab_stats')}</span> <b-input v-model="s.keyMap.showAchieve" id="showAchieveKey"></b-input></div>
             <div class="keyMap"><span>${loc('tab_settings')}</span> <b-input v-model="s.keyMap.settings" id="settingshKey"></b-input></div>
+        </div>
+        <div class="devTools">
+            <div>${loc('dev_tools')}</div>
+            <div class="theme">
+                <span class="settings18" aria-label="${loc('settings18')}">{{ 'dev_speed' | label }} </span>
+                <b-dropdown hoverable>
+                    <button class="button is-primary" slot="trigger">
+                        <span>{{ s.devSpeed }}x</span>
+                        <i class="fas fa-sort-down"></i>
+                    </button>
+                    ${[1,2,5,10,25,50].map((n) => `<b-dropdown-item v-on:click="devSpeed(${n})">${n}x</b-dropdown-item>`).join('')}
+                </b-dropdown>
+            </div>
+            <div class="devRow"><span>${loc('dev_skip')}</span> <b-input class="keyMap" id="devSkipDays" value="100"></b-input> <button class="button" @click="devSkip">${loc('dev_run')}</button></div>
+            <div class="devRow"><span>${loc('dev_atime')}</span> <b-input class="keyMap" id="devATimeDays" value="1000"></b-input> <button class="button" @click="devATime">${loc('dev_run')}</button></div>
+            <div class="devRow">
+                <span>${loc('dev_add')}</span>
+                <b-select id="devAddRes" size="is-small" @focus="devListRes"><option v-for="r in devRes" :value="r">{{ r }}</option></b-select>
+                <b-input class="keyMap" id="devAddAmount" value="1000"></b-input>
+                <button class="button" @click="devAdd">${loc('dev_run')}</button>
+            </div>
+            <div class="devRow"><button class="button" @click="devFill">${loc('dev_fill')}</button></div>
         </div>
         <div class="stringPack setting">
             <button id="stringPack" class="button" @click="importStringFile">{{ 'load_string_pack' | label }}</button>

@@ -1529,6 +1529,9 @@ if (typeof global.settings.sPackMsg === 'undefined'){
 if (typeof global.settings.expose === 'undefined'){
     global.settings['expose'] = false;
 }
+if (typeof global.settings.devSpeed === 'undefined'){
+    global.settings['devSpeed'] = 1;
+}
 if (typeof global.settings.alwaysPower === 'undefined'){
     global.settings['alwaysPower'] = false;
 }

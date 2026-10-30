@@ -10,10 +10,10 @@ The original game is at https://pmotschmann.github.io/Evolve/. To move a save ov
 
 ## Dev Console
 
-Open the browser console on the game page and run `dev.help()`.
+The same tools are in **Settings → Dev Tools**, or open the browser console on the game page and run `dev.help()`.
 
 ```unknown
-dev.speed(n)       # run the game n times faster (1 = normal, resets on reload)
+dev.speed(n)       # run the game n times faster (1 = normal), saved with your game
 dev.skip(days)     # instantly simulate that many game days
 dev.atime(days)    # add built-in accelerated time (2x), capped at 11520
 dev.add(res, n)    # add n of a resource, capped at storage

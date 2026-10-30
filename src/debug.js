@@ -59,11 +59,14 @@ export function enableDevTools(execGameLoops){
         return Object.keys(global.resource).filter((r) => global.resource[r].display);
     };
 
+    webWorker.speed = global.settings.devSpeed;
+
     window.dev = {
-        // Multiply game speed, e.g. dev.speed(10). Resets to 1x on reload.
+        // Multiply game speed, e.g. dev.speed(10). Saved with the game's settings.
         speed(n){
             if (typeof n === 'number' && n >= 1){
                 webWorker.speed = Math.floor(n);
+                global.settings.devSpeed = webWorker.speed;
             }
             return `Game speed: ${webWorker.speed}x`;
         },
@@ -116,7 +119,7 @@ export function enableDevTools(execGameLoops){
         },
         help(){
             return [
-                'dev.speed(n)       - run the game n times faster (1 = normal)',
+                'dev.speed(n)       - run the game n times faster (1 = normal), saved',
                 'dev.skip(days)     - instantly simulate that many game days',
                 'dev.atime(days)    - add built-in accelerated time (2x)',
                 'dev.add(res, n)    - add n of a resource, capped at storage',
