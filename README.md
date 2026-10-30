@@ -1,6 +1,6 @@
 # Evolve
 
-A personal fork of [pmotschmann/Evolve](https://github.com/pmotschmann/Evolve) with console helpers for speeding up play.
+A fork of [pmotschmann/Evolve](https://github.com/pmotschmann/Evolve) with console helpers for speeding up play.
 
 ## Play
 
